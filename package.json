@@ -13,9 +13,7 @@
     "axios": "^1.8.4",
     "chalk": "^5.4.1",
     "cli-table3": "^0.6.5",
-    "figlet": "^1.8.0",
-    "ora": "^5.0.0",
-    "fs": "^0.0.1-security"
+    "ora": "^5.0.0"
   },
   "devDependencies": {},
   "description": ""
