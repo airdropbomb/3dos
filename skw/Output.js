@@ -1,14 +1,18 @@
 const Table = require('cli-table3');
-const chalk = require('chalk').default;
+const chalk = require('chalk');
+
+// Chalk 5.x အတွက် hex color functions တွေကို သတ်မှတ်တယ်
+const headColor = (text) => chalk.hex('#00CED1')(text);
+const rowColor = (text) => chalk.hex('#00FFFF')(text);
 
 class Output {
     constructor() {
         this.table = new Table({
             head: [
-                chalk.hex('#00CED1')('Email'),
-                chalk.hex('#00CED1')('Daily Claim'),
-                chalk.hex('#00CED1')('Today Earnings'),
-                chalk.hex('#00CED1')('Ping Status')
+                headColor('Email'),
+                headColor('Daily Claim'),
+                headColor('Today Earnings'),
+                headColor('Ping Status')
             ],
             colWidths: [30, 15, 20, 15],
             style: {
@@ -25,17 +29,17 @@ class Output {
 
         if (rowIndex !== -1) {
             this.table[rowIndex] = [
-                chalk.hex('#00FFFF')(email),
-                claimStatus === 'Success' ? chalk.hex('#00FFFF')('✔ Success') : chalk.hex('#00FFFF')('Already Claimed'),
-                chalk.hex('#00FFFF')(earnings),
-                chalk.hex('#00FFFF')(pingStatus)
+                rowColor(email),
+                claimStatus === 'Success' ? rowColor('✔ Success') : rowColor('Already Claimed'),
+                rowColor(earnings),
+                rowColor(pingStatus)
             ];
         } else {
             this.table.push([
-                chalk.hex('#00FFFF')(email),
-                claimStatus === 'Success' ? chalk.hex('#00FFFF')('✔ Success') : chalk.hex('#00FFFF')('Already Claimed'),
-                chalk.hex('#00FFFF')(earnings),
-                chalk.hex('#00FFFF')(pingStatus)
+                rowColor(email),
+                claimStatus === 'Success' ? rowColor('✔ Success') : rowColor('Already Claimed'),
+                rowColor(earnings),
+                rowColor(pingStatus)
             ]);
         }
     }
