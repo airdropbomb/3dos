@@ -14,7 +14,7 @@
 
 1. Clone Repo
     ```
-    git clone https://github.com/airdropbomb/3dos.git && cd skw-3dos
+    git clone https://github.com/airdropbomb/3dos.git && cd 3dos
     ```
 2. Install Module
     ```
