@@ -3,7 +3,7 @@ const chalk = require('chalk');
 // Chalk 5.x မှာ hex color ကို သုံးဖို့ အရင် hex ကို သတ်မှတ်တယ်
 const hexColor = (text) => chalk.hex('#00CED1')(text);
 
-const welcome = hexColor(`
+const welcomeskw = hexColor(`
  █████╗ ██████╗ ██████╗     ███╗   ██╗ ██████╗ ██████╗ ███████╗
 ██╔══██╗██╔══██╗██╔══██╗    ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
 ███████║██║  ██║██████╔╝    ██╔██╗ ██║██║   ██║██║  ██║█████╗  
@@ -12,8 +12,8 @@ const welcome = hexColor(`
 ╚═╝  ╚═╝╚═════╝ ╚═════╝     ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝
 `);
 
-function display() {
-  console.log(welcome);
+function displayskw() {
+  console.log(welcomeskw);
   console.log(hexColor(" ╔══════════════════════════════════════════════════════════════╗"));
   console.log(hexColor(" ║ ≣  3DOS Autobot by ADBNODE                                   ║"));
   console.log(hexColor(" ║══════════════════════════════════════════════════════════════║"));
