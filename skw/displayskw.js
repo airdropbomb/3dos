@@ -1,9 +1,6 @@
 const chalk = require('chalk');
 
-// Chalk 5.x မှာ hex color ကို သုံးဖို့ အရင် hex ကို သတ်မှတ်တယ်
-const hexColor = (text) => chalk.hex('#00CED1')(text);
-
-const welcomeskw = hexColor(`
+const welcomeskw = chalk.hex('#00CED1')(`
  █████╗ ██████╗ ██████╗     ███╗   ██╗ ██████╗ ██████╗ ███████╗
 ██╔══██╗██╔══██╗██╔══██╗    ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
 ███████║██║  ██║██████╔╝    ██╔██╗ ██║██║   ██║██║  ██║█████╗  
@@ -14,14 +11,15 @@ const welcomeskw = hexColor(`
 
 function displayskw() {
   console.log(welcomeskw);
-  console.log(hexColor(" ╔══════════════════════════════════════════════════════════════╗"));
-  console.log(hexColor(" ║ ≣  3DOS Autobot by ADBNODE                                   ║"));
-  console.log(hexColor(" ║══════════════════════════════════════════════════════════════║"));
-  console.log(hexColor(" ║ ➤   Auto claim Daily                                        ║"));
-  console.log(hexColor(" ║ ➤   Auto Ping                                               ║"));
-  console.log(hexColor(" ║ ➤   MultiAccount                                            ║"));
-  console.log(hexColor(" ╚══════════════════════════════════════════════════════════════╝"));
-  console.log(hexColor("   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"));
+  console.log(chalk.hex('#00CED1')(" ╔══════════════════════════════════════════════════════════════╗"));
+  console.log(chalk.hex('#00CED1')(" ║ ≣  3DOS Autobot by ADB Node                                  ║"));
+  console.log(chalk.hex('#00CED1')(" ║══════════════════════════════════════════════════════════════║"));
+  console.log(chalk.hex('#00CED1')(" ║ ➤   Auto claim Daily                                        ║"));
+  console.log(chalk.hex('#00CED1')(" ║ ➤   Auto Ping                                               ║"));
+  console.log(chalk.hex('#00CED1')(" ║ ➤   Multiple                                                ║"));
+  console.log(chalk.hex('#00CED1')(" ║ ➤   Definitely Eligible                                     ║"));
+  console.log(chalk.hex('#00CED1')(" ╚══════════════════════════════════════════════════════════════╝"));
+  console.log(chalk.hex('#00CED1')("   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"));
 }
 
 module.exports = { displayskw };
