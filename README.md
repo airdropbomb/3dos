@@ -12,7 +12,7 @@
 
 ## Step RUN
 
-1. Clone repo dan masuk ke folder
+1. Clone Repo
     ```
     git clone https://github.com/airdropbomb/3dos.git && cd skw-3dos
     ```
@@ -20,7 +20,7 @@
     ```
     npm install
     ```
-3. Submit `API key` dan `Bearer` di `data.txt`
+3. Submit `API key` and `Bearer` id `data.txt`
     ```
     nano data.txt
     ```
