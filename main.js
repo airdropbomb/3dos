@@ -1,11 +1,11 @@
 const axios = require('axios');
 const fs = require('fs');
-const chalk = require('chalk').default;
+const chalk = require('chalk'); // .default မလိုတော့ဘူး
 const Table = require('cli-table3');
 const ora = require('ora');
 const userAgents = require('./skw/userAgents');
 const Output = require('./skw/Output');
-const { displayskw } = require('./skw/displayskw');
+require('./skw/banner'); // banner.js ကို require လုပ်ရုံနဲ့ ပြီးတယ်
 const outputTable = new Output();
 
 const API_and_Bearer = 'data.txt';
@@ -30,7 +30,7 @@ async function spinnerCountdown(seconds) {
                 spinner.succeed();
                 resolve();
             } else {
-                spinner.text = chalk.cyan(`${countdown} seconds...`);
+                spinner.text = chalk.hex('#00FFFF')(`${countdown} seconds...`); // Chalk 5.x နဲ့ အဆင်ပြေ
                 countdown--;
             }
         }, 1000);
@@ -52,7 +52,7 @@ async function getProfile(bearerToken) {
         const email = response.data?.data?.email || "Email not found";
         return email;
     } catch (error) {
-        console.error(chalk.red("Error fetching email:"), error.response?.data || error.message);
+        console.error(chalk.hex('#FF0000')("Error fetching email:"), error.response?.data || error.message); // Chalk 5.x
         return null;
     }
 }
@@ -74,7 +74,6 @@ async function dailyClaim(bearerToken) {
         } else {
             return 'Error';
         }
-
     } catch (error) {
         return 'Already Claimed';
     }
@@ -134,9 +133,7 @@ async function startBot() {
 
             outputTable.updateRow(email, dailyClaimStatus, earnings, status);
             outputTable.printTable();
-
         }
-
     } catch (error) {
         spinner.fail();
         console.error('Error:', error.message);
@@ -145,7 +142,7 @@ async function startBot() {
 
 async function main() {
     console.clear();
-    displayskw();
+    // require('./skw/banner') ကို အပေါ်မှာ ထည့်ပြီးသားမို့ ဒီမှာ ထပ်ခေါ်စရာ မလိုတော့ဘူး
     await delay(2000);
     try {
         while (true) {
