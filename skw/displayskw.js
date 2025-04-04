@@ -1,5 +1,8 @@
 const chalk = require('chalk');
-const hexColor = chalk.hex('#00CED1'); // အရောင်ကို အရင်သတ်မှတ်
+
+// Chalk 5.x မှာ hex color ကို သုံးဖို့ အရင် hex ကို သတ်မှတ်တယ်
+const hexColor = (text) => chalk.hex('#00CED1')(text);
+
 const welcome = hexColor(`
  █████╗ ██████╗ ██████╗     ███╗   ██╗ ██████╗ ██████╗ ███████╗
 ██╔══██╗██╔══██╗██╔══██╗    ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
