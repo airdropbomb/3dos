@@ -6,8 +6,7 @@
 ## Fitur Autobot
 - Auto claim Daily
 - Auto Ping
-- Multi Akun
-- Sudah Pasti Elig
+- Multiple Account
 
 ## [Link Testnet](https://build.assisterr.ai/?ref=666478c979d736dc29550601)
 
@@ -15,7 +14,7 @@
 
 1. Clone repo dan masuk ke folder
     ```
-    git clone https://github.com/yogik23/skw-3dos.git && cd skw-3dos
+    git clone https://github.com/airdropbomb/3dos.git && cd skw-3dos
     ```
 2. Install Module
     ```
@@ -38,12 +37,16 @@
 
 **Recomended to using vps to automatic claims** 
 
-### Cara Ambil Bearer
-1. Login ke website
-2. Klik kanan inspeksi
-3. Cari Api me jika tidak ada refresh web
-4. Dibagian Header scroll kebawah sampai authorization:
-5. Copy bagian eyj.. 
+### How to Get Bearer Token
+Log in to the website
+
+Right-click and select "Inspect"
+
+Look for the "API me" section; if it's not there, refresh the web page
+
+In the "Headers" section, scroll down until you find "authorization:"
+
+Copy the part starting with "eyj..." 
 
 
 ![1](https://github.com/user-attachments/assets/f4982fe9-105f-44ce-be5e-ea4fd20469c7)
