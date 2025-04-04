@@ -1,6 +1,6 @@
 const chalk = require('chalk');
-
-const welcomeskw = chalk.hex('#00CED1')(`
+const hexColor = chalk.hex('#00CED1'); // အရောင်ကို အရင်သတ်မှတ်
+const welcome = hexColor(`
  █████╗ ██████╗ ██████╗     ███╗   ██╗ ██████╗ ██████╗ ███████╗
 ██╔══██╗██╔══██╗██╔══██╗    ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
 ███████║██║  ██║██████╔╝    ██╔██╗ ██║██║   ██║██║  ██║█████╗  
@@ -9,16 +9,16 @@ const welcomeskw = chalk.hex('#00CED1')(`
 ╚═╝  ╚═╝╚═════╝ ╚═════╝     ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝
 `);
 
-function displayskw() {
-  console.log(welcomeskw);
-  console.log(chalk.hex('#00CED1')(" ╔══════════════════════════════════════════════════════════════╗"));
-  console.log(chalk.hex('#00CED1')(" ║ ≣  3DOS Autobot by ADBNODE                                   ║"));
-  console.log(chalk.hex('#00CED1')(" ║══════════════════════════════════════════════════════════════║"));
-  console.log(chalk.hex('#00CED1')(" ║ ➤   Auto claim Daily                                        ║"));
-  console.log(chalk.hex('#00CED1')(" ║ ➤   Auto Ping                                               ║"));
-  console.log(chalk.hex('#00CED1')(" ║ ➤   MultiAccount                                            ║"));
-  console.log(chalk.hex('#00CED1')(" ╚══════════════════════════════════════════════════════════════╝"));
-  console.log(chalk.hex('#00CED1')("   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"));
+function display() {
+  console.log(welcome);
+  console.log(hexColor(" ╔══════════════════════════════════════════════════════════════╗"));
+  console.log(hexColor(" ║ ≣  3DOS Autobot by ADBNODE                                   ║"));
+  console.log(hexColor(" ║══════════════════════════════════════════════════════════════║"));
+  console.log(hexColor(" ║ ➤   Auto claim Daily                                        ║"));
+  console.log(hexColor(" ║ ➤   Auto Ping                                               ║"));
+  console.log(hexColor(" ║ ➤   MultiAccount                                            ║"));
+  console.log(hexColor(" ╚══════════════════════════════════════════════════════════════╝"));
+  console.log(hexColor("   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"));
 }
 
 module.exports = { displayskw };
