@@ -1,7 +1,7 @@
 const Table = require('cli-table3');
 const chalk = require('chalk');
 
-// Chalk 5.x အတွက် hex color functions တွေကို သတ်မှတ်တယ်
+// Chalk 5.x နဲ့ အဆင်ပြေအောင် hex color functions
 const headColor = (text) => chalk.hex('#00CED1')(text);
 const rowColor = (text) => chalk.hex('#00FFFF')(text);
 
