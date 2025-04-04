@@ -8,7 +8,7 @@ const Output = require('./skw/Output');
 const { displayskw } = require('./skw/displayskw');
 const outputTable = new Output();
 
-const API_dan_Bearer = 'data.txt';
+const API_and_Bearer = 'data.txt';
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const getRandomUserAgent = () => {
@@ -16,10 +16,10 @@ const getRandomUserAgent = () => {
 };
 
 const spinner = ora({
-  color: "cyan",
+    color: "cyan",
 });
 
-async function spinnerCD(seconds) {
+async function spinnerCountdown(seconds) {
     const spinner = ora().start();
 
     return new Promise((resolve) => {
@@ -30,14 +30,14 @@ async function spinnerCD(seconds) {
                 spinner.succeed();
                 resolve();
             } else {
-                spinner.text = chalk.cyan(`${countdown} detik...`);
+                spinner.text = chalk.cyan(`${countdown} seconds...`);
                 countdown--;
             }
         }, 1000);
     });
 }
 
-async function getprofile(bearerToken) {
+async function getProfile(bearerToken) {
     const url = `https://api.dashboard.3dos.io/api/profile/me`;
     try {
         const response = await axios.post(url, {}, {
@@ -57,7 +57,7 @@ async function getprofile(bearerToken) {
     }
 }
 
-async function daily(bearerToken) {
+async function dailyClaim(bearerToken) {
     const url = `https://api.dashboard.3dos.io/api/claim-reward`;
     try {
         const response = await axios.post(url, { id: "daily-reward-api" }, {
@@ -76,7 +76,7 @@ async function daily(bearerToken) {
         }
 
     } catch (error) {
-        return 'Sudah Claim';
+        return 'Already Claimed';
     }
 }
 
@@ -106,7 +106,7 @@ async function ping(apiSecret, bearerToken) {
 async function startBot() {
     console.clear();
     try {
-        const apiSecretsAndTokens = fs.readFileSync(API_dan_Bearer, 'utf8')
+        const apiSecretsAndTokens = fs.readFileSync(API_and_Bearer, 'utf8')
             .split('\n')
             .map(line => line.trim())
             .filter(line => line);
@@ -124,9 +124,9 @@ async function startBot() {
                 continue;
             }
 
-            const email = await getprofile(bearerToken);
+            const email = await getProfile(bearerToken);
             await delay(1000);
-            const dailyClaimStatus = await daily(bearerToken);
+            const dailyClaimStatus = await dailyClaim(bearerToken);
             await delay(1000);
             const { earnings, status } = await ping(apiSecret, bearerToken);
             await delay(1000);
@@ -150,7 +150,7 @@ async function main() {
     try {
         while (true) {
             await startBot();
-            await spinnerCD(30);
+            await spinnerCountdown(30);
         }
     } catch (error) {
         console.error('Error in main loop:', error.message);
