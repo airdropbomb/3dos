@@ -18,7 +18,7 @@ I am not `responsible` for the possibility of an account being `banned`!
 - Clone Repository
 
 ```bash
-git clone https://github.com/Hunga9k50doker/3dos.git
+git clone https://github.com/airdropbomb/3dos.git
 cd 3dos
 ```
 
@@ -42,7 +42,7 @@ nano .env
 nano proxy.txt
 ```
 
-- email|password : how to get email|password => join my channel: https://t.me/airdrophuntersieutoc
+- email|password : how to get email|password => join my channel: https://t.me/airdropbombnode
 
 ```bash
 nano data.txt
