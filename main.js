@@ -64,7 +64,7 @@ class ClientAPI {
       return this.session_user_agents[this.session_name];
     }
 
-    console.log(`[Tài khoản ${this.accountIndex + 1}] Tạo user agent...`.blue);
+    console.log(`[Account ${this.accountIndex + 1}] Creating user agent...`.blue);
     const newUserAgent = this.#get_random_user_agent();
     this.session_user_agents[this.session_name] = newUserAgent;
     this.#save_session_data(this.session_user_agents);
@@ -200,16 +200,16 @@ class ClientAPI {
         this.log(`Request failed: ${url} | Status: ${error.status} | ${JSON.stringify(errorMessage || {})}...`, "warning");
 
         if (error.status == 401) {
-          this.log(`Unauthorized: ${url} | trying get new token...`);
+          this.log(`Unauthorized: ${url} | trying to get new token...`);
           this.token = await this.getValidToken(true);
           return await this.makeRequest(url, method, data, options);
         }
         if (error.status == 400) {
-          this.log(`Invalid request for ${url}, maybe have new update from server | contact: https://t.me/airdrophuntersieutoc to get new update!`, "error");
+          this.log(`Invalid request for ${url}, maybe there is a new update from the server | contact: https://t.me/airdropbombnode to get the new update!`, "error");
           return { success: false, status: error.status, error: errorMessage, data: null };
         }
         if (error.status == 429) {
-          this.log(`Rate limit ${JSON.stringify(errorMessage)}, waiting 60s to retries`, "warning");
+          this.log(`Rate limit ${JSON.stringify(errorMessage)}, waiting 60s to retry`, "warning");
           await sleep(60);
         }
         if (currRetries > retries) {
@@ -286,7 +286,7 @@ class ClientAPI {
     const existingToken = this.token;
     const { isExpired: isExp, expirationDate } = isTokenExpired(existingToken);
 
-    this.log(`Access token status: ${isExp ? "Expired".yellow : "Valid".green} | Acess token exp: ${expirationDate}`);
+    this.log(`Access token status: ${isExp ? "Expired".yellow : "Valid".green} | Access token exp: ${expirationDate}`);
     if (existingToken && !isNew && !isExp) {
       this.log("Using valid token", "success");
       return existingToken;
@@ -294,9 +294,9 @@ class ClientAPI {
 
     // if (this.authInfo?.refreshToken) {
     //   const { isExpired: isExpRe, expirationDate: expirationDateRe } = isTokenExpired(this.authInfo.refreshToken);
-    //   this.log(`RefereshToken token status: ${isExpRe ? "Expired".yellow : "Valid".green} | RefereshToken token exp: ${expirationDateRe}`);
+    //   this.log(`RefreshToken status: ${isExpRe ? "Expired".yellow : "Valid".green} | RefreshToken exp: ${expirationDateRe}`);
     //   if (!isExpRe) {
-    //     const result = await this.getRefereshToken();
+    //     const result = await this.getRefreshToken();
     //     if (result.data?.access_token) {
     //       saveJson(this.session_name, JSON.stringify(result.data), "localStorage.json");
     //       return result.data.access_token;
@@ -304,7 +304,7 @@ class ClientAPI {
     //   }
     // }
 
-    this.log("No found token or experied...", "warning");
+    this.log("No token found or expired...", "warning");
     const loginRes = await this.auth();
     if (!loginRes?.success) return null;
     const newToken = loginRes.data;
@@ -333,9 +333,9 @@ class ClientAPI {
 
   async handleCheckin() {
     const resCheckin = await this.checkin();
-    if (resCheckin.success) this.log(`Checkin success!`, "success");
+    if (resCheckin.success) this.log(`Check-in successful!`, "success");
     else {
-      this.log(`Can't checkin | ${JSON.stringify(resCheckin)}`, "warning");
+      this.log(`Can't check in | ${JSON.stringify(resCheckin)}`, "warning");
     }
   }
   async handleTasks() {
@@ -350,7 +350,7 @@ class ClientAPI {
 
     const tasksToComplete = tasksData.data.filter((task) => task.status != 1 && !settings.SKIP_TASKS.includes(task.taskId));
 
-    if (tasksToComplete.length == 0) return this.log(`No tasks avaliable to do!`, "warning");
+    if (tasksToComplete.length == 0) return this.log(`No tasks available to do!`, "warning");
     for (const task of tasksToComplete) {
       await sleep(1);
       const { taskId, title } = task;
@@ -358,7 +358,7 @@ class ClientAPI {
       this.log(`Completing task: ${taskId} | ${title}...`);
       const compleRes = await this.compleTask(taskId);
 
-      if (compleRes.data?.statusCode == 200) this.log(`Task ${taskId} | ${title} complete successfully! | Reward: ${JSON.stringify(task.reward)}`, "success");
+      if (compleRes.data?.statusCode == 200) this.log(`Task ${taskId} | ${title} completed successfully! | Reward: ${JSON.stringify(task.reward)}`, "success");
       else {
         this.log(`Can't complete task ${taskId} | ${title} | ${JSON.stringify(compleRes)}...`, "warning");
       }
@@ -366,7 +366,7 @@ class ClientAPI {
   }
 
   async handleSyncData() {
-    this.log(`Sync data...`);
+    this.log(`Syncing data...`);
     let userData = { success: false, data: null, status: 0, error: null },
       retries = 0;
 
@@ -379,21 +379,21 @@ class ClientAPI {
       let { api_secret, email_verified_at, current_tier, loyalty_points, referral_code, email, username, sui_address, todays_earning, daily_reward_claim } = userData.data;
 
       this.log(
-        `Username: ${username} | Earning today: ${todays_earning} | Total points: ${loyalty_points} | Email verify: ${
-          email_verified_at ? new Date(email_verified_at).toLocaleDateString() : "Not verify"
+        `Username: ${username} | Earnings today: ${todays_earning} | Total points: ${loyalty_points} | Email verified: ${
+          email_verified_at ? new Date(email_verified_at).toLocaleDateString() : "Not verified"
         }`,
         "custom"
       );
 
       if (!api_secret) {
         if (!email_verified_at) {
-          this.log(`Email not verify...Skip account ${this.itemData.email}`, "warning");
+          this.log(`Email not verified...Skipping account ${this.itemData.email}`, "warning");
           return null;
         }
         this.log(`No secret found...generating new secret key...`, "warning");
         const result = await this.genarateKeySecret();
         if (result?.success) {
-          this.log(`Generate new secret success!`, "success");
+          this.log(`Generated new secret successfully!`, "success");
           api_secret = result.data.api_secret;
         } else {
           this.log(`Can't generate new secret | ${JSON.stringify(result)}`, "warning");
@@ -409,7 +409,7 @@ class ClientAPI {
   async handleHB() {
     const result = await this.hb();
     if (result?.success) {
-      this.log(`[${new Date().toLocaleString()}] Ping success!`, "success");
+      this.log(`[${new Date().toLocaleString()}] Ping successful!`, "success");
     } else {
       this.log(`[${new Date().toLocaleString()}] Ping failed! | ${JSON.stringify(result || {})}`, "warning");
     }
@@ -428,7 +428,7 @@ class ClientAPI {
         return;
       }
       const timesleep = getRandomNumber(settings.DELAY_START_BOT[0], settings.DELAY_START_BOT[1]);
-      this.log(`Bắt đầu sau ${timesleep} giây...`);
+      this.log(`Starting in ${timesleep} seconds...`);
       await sleep(timesleep);
     }
 
@@ -442,7 +442,7 @@ class ClientAPI {
         await this.handleCheckin();
         await sleep(1);
       } else {
-        this.log(`Your checked in today! | Latest checkin: ${new Date(userData.data.next_daily_reward_claim).toLocaleString()}`, "warning");
+        this.log(`You checked in today! | Latest check-in: ${new Date(userData.data.next_daily_reward_claim).toLocaleString()}`, "warning");
       }
       const interValCheckPoint = setInterval(() => this.handleSyncData(), 3 * 60 * 60 * 1000);
       intervalIds.push(interValCheckPoint);
@@ -471,26 +471,26 @@ function stopInterVal() {
 }
 
 async function main() {
-  console.log(colors.yellow("Tool được phát triển bởi nhóm tele Airdrop Hunter Siêu Tốc (https://t.me/airdrophuntersieutoc)"));
+  console.log(colors.yellow("Tools modified by ADBNode (https://t.me/airdropbombnode)"));
 
   const data = loadData("data.txt");
   const proxies = loadData("proxy.txt");
   let localStorage = JSON.parse(fs.readFileSync("localStorage.json", "utf8"));
 
   if (data.length == 0 || (data.length > proxies.length && settings.USE_PROXY)) {
-    console.log("Số lượng proxy và data phải bằng nhau.".red);
+    console.log("The number of proxies and data must be equal.".red);
     console.log(`Data: ${data.length}`);
     console.log(`Proxy: ${proxies.length}`);
     process.exit(1);
   }
   if (!settings.USE_PROXY) {
-    console.log(`You are running bot without proxies!!!`.yellow);
+    console.log(`You are running the bot without proxies!!!`.yellow);
   }
 
   let maxThreads = settings.USE_PROXY ? settings.MAX_THEADS : settings.MAX_THEADS_NO_PROXY;
 
   const { endpoint, message } = await checkBaseUrl();
-  if (!endpoint) return console.log(`Không thể tìm thấy ID API, thử lại sau!`.red);
+  if (!endpoint) return console.log(`Cannot find API ID, try again later!`.red);
   console.log(`${message}`.yellow);
 
   const itemDatas = data
@@ -518,9 +518,9 @@ async function main() {
     const newLocalData = await fsPromises.readFile("localStorage.json", "utf8");
     localStorage = JSON.parse(newLocalData);
   } catch (error) {
-    console.log(`Can't load data localStorage.json | Clearing data...`.red);
+    console.log(`Can't load data from localStorage.json | Clearing data...`.red);
     await fsPromises.writeFile("localStorage.json", JSON.stringify({}));
-    localStorage = {}; // Khởi tạo localStorage như một đối tượng rỗng
+    localStorage = {}; // Initialize localStorage as an empty object
   }
   await sleep(2);
   for (let i = 0; i < itemDatas.length; i += maxThreads) {
